@@ -1,4 +1,4 @@
-import 'package:delivery_app/pages/login_page.dart';
+import 'package:delivery_app/pages/routes/app_route.dart';
 import 'package:flutter/cupertino.dart';
 
 void main() {
@@ -15,7 +15,7 @@ class MyApp extends StatelessWidget {
         primaryColor: CupertinoColors.systemRed,
         brightness: Brightness.light
       ),
-      home: LoginPage(),
+      home: AppRoutes(),
     );
   }
 }

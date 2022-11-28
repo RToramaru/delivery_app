@@ -1,3 +1,4 @@
+import 'package:delivery_app/pages/home_page.dart';
 import 'package:delivery_app/pages/login_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -19,8 +20,9 @@ class AppRoutes extends StatelessWidget {
       initialRoute: '/',
       routes: {
         '/login': (context) => const LoginPage(),
+        '/home': (context) => const HomePage(),
       },
-      home:  const LoginPage(),
+      home:  const HomePage(),
     );
   }
 }
