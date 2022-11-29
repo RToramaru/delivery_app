@@ -116,9 +116,9 @@ class _HomeFragmentState extends State<HomeFragment> {
                             ],
                           ),
                           CupertinoButton(
-                            child: Text('Adicionar ao carrinho'),
                             onPressed: () {},
                             padding: const EdgeInsets.all(0),
+                            child: Text('Adicionar ao carrinho'),
                           ),
                         ],
                       ),

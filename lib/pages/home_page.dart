@@ -1,4 +1,5 @@
 import 'package:delivery_app/pages/fragments/home_fragment.dart';
+import 'package:delivery_app/pages/fragments/profile_fragment.dart';
 import 'package:flutter/cupertino.dart';
 
 class HomePage extends StatefulWidget {
@@ -12,7 +13,7 @@ class _HomePageState extends State<HomePage> {
   List<Widget> screens = [
     HomeFragment(),
     const Text('Histórico'),
-    const Text('Perfil'),
+    ProfileFragment(),
     const Text('Favoritos'),
     const Text('Carrinho'),
   ];
