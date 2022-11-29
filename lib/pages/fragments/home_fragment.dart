@@ -46,8 +46,8 @@ class _HomeFragmentState extends State<HomeFragment> {
                     child: ListTile(
                       leading: Image.asset(
                         'assets/images/background.png',
-                        width: 150,
-                        height: 150,
+                        width: 100,
+                        height: 100,
                       ),
                       title: Text('Nome do produto'),
                       subtitle: Column(
@@ -74,7 +74,7 @@ class _HomeFragmentState extends State<HomeFragment> {
                               ),
                               Padding(
                                 padding:
-                                    const EdgeInsets.only(top: 10, left: 10),
+                                    const EdgeInsets.only(top: 10, left: 5),
                                 child: Icon(
                                   CupertinoIcons.star_fill,
                                   color: CupertinoColors.systemYellow,
@@ -83,7 +83,7 @@ class _HomeFragmentState extends State<HomeFragment> {
                               ),
                               Padding(
                                 padding:
-                                    const EdgeInsets.only(top: 10, left: 10),
+                                    const EdgeInsets.only(top: 10, left: 5),
                                 child: Icon(
                                   CupertinoIcons.star_fill,
                                   color: CupertinoColors.systemYellow,
@@ -92,7 +92,7 @@ class _HomeFragmentState extends State<HomeFragment> {
                               ),
                               Padding(
                                 padding:
-                                    const EdgeInsets.only(top: 10, left: 10),
+                                    const EdgeInsets.only(top: 10, left: 5),
                                 child: Icon(
                                   CupertinoIcons.star_lefthalf_fill,
                                   color: CupertinoColors.systemYellow,
@@ -101,7 +101,7 @@ class _HomeFragmentState extends State<HomeFragment> {
                               ),
                               Padding(
                                 padding:
-                                    const EdgeInsets.only(top: 10, left: 10),
+                                    const EdgeInsets.only(top: 10, left: 5),
                                 child: Icon(
                                   CupertinoIcons.star,
                                   color: CupertinoColors.systemYellow,
@@ -118,7 +118,7 @@ class _HomeFragmentState extends State<HomeFragment> {
                           CupertinoButton(
                             onPressed: () {},
                             padding: const EdgeInsets.all(0),
-                            child: Text('Adicionar ao carrinho'),
+                            child: Text('Adicionar'),
                           ),
                         ],
                       ),

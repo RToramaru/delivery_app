@@ -1,3 +1,4 @@
+import 'package:delivery_app/pages/fragments/favorites_fragment.dart';
 import 'package:delivery_app/pages/fragments/home_fragment.dart';
 import 'package:delivery_app/pages/fragments/profile_fragment.dart';
 import 'package:flutter/cupertino.dart';
@@ -14,7 +15,7 @@ class _HomePageState extends State<HomePage> {
     HomeFragment(),
     const Text('Histórico'),
     ProfileFragment(),
-    const Text('Favoritos'),
+    FavoritesFragment(),
     const Text('Carrinho'),
   ];
 
