@@ -38,7 +38,8 @@ class _LoginPageState extends State<LoginPage> {
                   textAlign: TextAlign.center),
             ),
             Card(
-              margin: const EdgeInsets.only(top: 210, left: 50, right: 50, bottom: 100),
+              margin: const EdgeInsets.only(
+                  top: 210, left: 50, right: 50, bottom: 50),
               child: Column(
                 children: [
                   Container(
@@ -80,7 +81,9 @@ class _LoginPageState extends State<LoginPage> {
                     margin: const EdgeInsets.only(top: 20, left: 20, right: 20),
                     child: CupertinoButton(
                       child: const Text('Criar conta'),
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.pushNamed(context, '/create_user');
+                      },
                     ),
                   ),
                 ],

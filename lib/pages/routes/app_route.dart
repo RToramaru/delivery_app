@@ -1,3 +1,4 @@
+import 'package:delivery_app/pages/create_user.dart';
 import 'package:delivery_app/pages/home_page.dart';
 import 'package:delivery_app/pages/login_page.dart';
 import 'package:flutter/cupertino.dart';
@@ -21,8 +22,9 @@ class AppRoutes extends StatelessWidget {
       routes: {
         '/login': (context) => const LoginPage(),
         '/home': (context) => const HomePage(),
+        '/create_user': (context) => const CreateUser(),
       },
-      home:  const HomePage(),
+      home:  const LoginPage(),
     );
   }
 }
