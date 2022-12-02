@@ -74,7 +74,9 @@ class _LoginPageState extends State<LoginPage> {
                     margin: const EdgeInsets.only(top: 20, left: 20, right: 20),
                     child: CupertinoButton.filled(
                       child: const Text('Entrar'),
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.pushNamed(context, '/home');
+                      },
                     ),
                   ),
                   Container(
