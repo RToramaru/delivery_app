@@ -1,22 +1,15 @@
+import 'package:delivery_app/firebase_options.dart';
 import 'package:delivery_app/pages/routes/app_route.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/cupertino.dart';
 
-void main() {
-  runApp(const MyApp());
+Future<void> main() async{
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    name: 'Delivery-app',
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
+  runApp(const AppRoutes());
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
-  @override
-  Widget build(BuildContext context) {
-    return const CupertinoApp(
-      title: 'Flutter Demo',
-      theme: CupertinoThemeData(
-        primaryColor: CupertinoColors.systemRed,
-        brightness: Brightness.light
-      ),
-      home: AppRoutes(),
-    );
-  }
-}
 
