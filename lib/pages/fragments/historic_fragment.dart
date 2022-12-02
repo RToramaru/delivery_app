@@ -13,6 +13,7 @@ class _HistoricFragmentState extends State<HistoricFragment> {
   Widget build(BuildContext context) {
     return ListView.builder(itemCount: 10, itemBuilder: (context, index) {
       return Container(
+        margin: const EdgeInsets.all(10),
         child: Card(
           child: ListTile(
             leading: Icon(CupertinoIcons.shopping_cart,

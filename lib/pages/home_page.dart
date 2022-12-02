@@ -1,3 +1,4 @@
+import 'package:delivery_app/pages/fragments/cart_fragment.dart';
 import 'package:delivery_app/pages/fragments/favorites_fragment.dart';
 import 'package:delivery_app/pages/fragments/historic_fragment.dart';
 import 'package:delivery_app/pages/fragments/home_fragment.dart';
@@ -17,7 +18,7 @@ class _HomePageState extends State<HomePage> {
     HistoricFragment(),
     ProfileFragment(),
     FavoritesFragment(),
-    const Text('Carrinho'),
+    CartFragment()
   ];
 
   @override
