@@ -1,7 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_multi_formatter/flutter_multi_formatter.dart';
 
-
 class CreateUser extends StatefulWidget {
   const CreateUser({Key? key}) : super(key: key);
 
@@ -97,10 +96,30 @@ class _CreateUserState extends State<CreateUser> {
               const SizedBox(height: 20),
               CupertinoButton.filled(
                 child: const Text('Criar conta'),
-                onPressed: () {},
+                onPressed: () {
+                  _showAlertDialog(context);
+                },
               ),
             ],
           ),
         ));
+  }
+
+  void _showAlertDialog(BuildContext context) {
+    showCupertinoModalPopup<void>(
+      context: context,
+      builder: (BuildContext context) => CupertinoAlertDialog(
+        title: const Text('Sucesso!'),
+        content: const Text('Conta criada com sucesso!'),
+        actions: <CupertinoDialogAction>[
+          CupertinoDialogAction(
+            child: const Text('Ok'),
+            onPressed: () {
+              Navigator.pop(context);
+            },
+          ),
+        ],
+      ),
+    );
   }
 }
