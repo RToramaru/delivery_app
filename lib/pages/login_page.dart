@@ -1,3 +1,4 @@
+import 'package:delivery_app/controllers/user_controller.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:wave/config.dart';
@@ -11,6 +12,8 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
+  final UserController userController = UserController();
+
   @override
   Widget build(BuildContext context) {
     return CupertinoPageScaffold(
@@ -44,10 +47,11 @@ class _LoginPageState extends State<LoginPage> {
                 children: [
                   Container(
                     margin: const EdgeInsets.only(top: 20, left: 20, right: 20),
-                    child: const CupertinoTextField(
+                    child: CupertinoTextField(
+                      controller: userController.fieldTextUserEmail,
                       placeholder: 'Email',
-                      padding: EdgeInsets.all(16),
-                      decoration: BoxDecoration(
+                      padding: const EdgeInsets.all(16),
+                      decoration: const BoxDecoration(
                         border: Border(
                           bottom: BorderSide(
                               width: 0.0, color: CupertinoColors.white),
@@ -57,12 +61,13 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                   Container(
                     margin: const EdgeInsets.only(top: 20, left: 20, right: 20),
-                    child: const CupertinoTextField(
+                    child: CupertinoTextField(
+                      controller: userController.fieldTextUserPassword,
                       obscureText: true,
                       obscuringCharacter: '*',
                       placeholder: 'Senha',
-                      padding: EdgeInsets.all(16),
-                      decoration: BoxDecoration(
+                      padding: const EdgeInsets.all(16),
+                      decoration: const BoxDecoration(
                         border: Border(
                           bottom: BorderSide(
                               width: 0.0, color: CupertinoColors.white),
@@ -74,8 +79,49 @@ class _LoginPageState extends State<LoginPage> {
                     margin: const EdgeInsets.only(top: 20, left: 20, right: 20),
                     child: CupertinoButton.filled(
                       child: const Text('Entrar'),
-                      onPressed: () {
-                        Navigator.pushNamed(context, '/home');
+                      onPressed: () async {
+                        if (userController.fieldTextUserEmail.text.isEmpty ||
+                            userController.fieldTextUserPassword.text.isEmpty) {
+                          showCupertinoModalPopup<void>(
+                            context: context,
+                            builder: (BuildContext context) =>
+                                CupertinoAlertDialog(
+                              title: const Text('Erro!'),
+                              content: const Text(
+                                  'Usuário e senha são obrigatórios!'),
+                              actions: <CupertinoDialogAction>[
+                                CupertinoDialogAction(
+                                  child: const Text('Ok'),
+                                  onPressed: () {
+                                    Navigator.pop(context);
+                                  },
+                                ),
+                              ],
+                            ),
+                          );
+                        } else if (await userController.checkUser(
+                            userController.fieldTextUserEmail.text,
+                            userController.fieldTextUserPassword.text)) {
+                          Navigator.pushNamed(context, '/home');
+                        } else {
+                          showCupertinoModalPopup<void>(
+                            context: context,
+                            builder: (BuildContext context) =>
+                                CupertinoAlertDialog(
+                              title: const Text('Erro!'),
+                              content:
+                                  const Text('Usuário ou senha inválidos!'),
+                              actions: <CupertinoDialogAction>[
+                                CupertinoDialogAction(
+                                  child: const Text('Ok'),
+                                  onPressed: () {
+                                    Navigator.pop(context);
+                                  },
+                                ),
+                              ],
+                            ),
+                          );
+                        }
                       },
                     ),
                   ),
