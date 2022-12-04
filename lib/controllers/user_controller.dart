@@ -3,7 +3,7 @@ import 'package:delivery_app/models/user_model.dart';
 import 'package:flutter/cupertino.dart';
 
 class UserController {
-  final _colecao = FirebaseFirestore.instance.collection('users');
+  final _collection = FirebaseFirestore.instance.collection('users');
 
   TextEditingController fieldTextUserName = TextEditingController();
   TextEditingController fieldTextUserEmail = TextEditingController();
@@ -22,7 +22,7 @@ class UserController {
           phone: phone,
           address: address,
           card: card);
-      await _colecao.doc(email).set(user.toJson());
+      await _collection.doc(email).set(user.toJson());
       _clearFields();
       return true;
     } catch (e) {
@@ -32,12 +32,12 @@ class UserController {
   }
 
   Future<UserModel> getUser(String email) async {
-    var doc = await _colecao.doc(email).get();
+    var doc = await _collection.doc(email).get();
     return UserModel.fromJson(doc.data()!);
   }
 
   Future<bool> checkUser(String email, String password) async {
-    var doc = await _colecao.doc(email).get();
+    var doc = await _collection.doc(email).get();
     if(doc.exists){
       return doc.data()!['password'] == password;
     }
