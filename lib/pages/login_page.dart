@@ -1,4 +1,6 @@
 import 'package:delivery_app/controllers/user_controller.dart';
+import 'package:delivery_app/pages/widgets/modal_widget.dart';
+import 'package:delivery_app/pages/widgets/text_field_decoration.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:wave/config.dart';
@@ -51,12 +53,7 @@ class _LoginPageState extends State<LoginPage> {
                       controller: userController.fieldTextUserEmail,
                       placeholder: 'Email',
                       padding: const EdgeInsets.all(16),
-                      decoration: const BoxDecoration(
-                        border: Border(
-                          bottom: BorderSide(
-                              width: 0.0, color: CupertinoColors.white),
-                        ),
-                      ),
+                      decoration: textFieldDecoration,
                     ),
                   ),
                   Container(
@@ -67,12 +64,7 @@ class _LoginPageState extends State<LoginPage> {
                       obscuringCharacter: '*',
                       placeholder: 'Senha',
                       padding: const EdgeInsets.all(16),
-                      decoration: const BoxDecoration(
-                        border: Border(
-                          bottom: BorderSide(
-                              width: 0.0, color: CupertinoColors.white),
-                        ),
-                      ),
+                      decoration: textFieldDecoration,
                     ),
                   ),
                   Container(
@@ -82,45 +74,15 @@ class _LoginPageState extends State<LoginPage> {
                       onPressed: () async {
                         if (userController.fieldTextUserEmail.text.isEmpty ||
                             userController.fieldTextUserPassword.text.isEmpty) {
-                          showCupertinoModalPopup<void>(
-                            context: context,
-                            builder: (BuildContext context) =>
-                                CupertinoAlertDialog(
-                              title: const Text('Erro!'),
-                              content: const Text(
-                                  'Usuário e senha são obrigatórios!'),
-                              actions: <CupertinoDialogAction>[
-                                CupertinoDialogAction(
-                                  child: const Text('Ok'),
-                                  onPressed: () {
-                                    Navigator.pop(context);
-                                  },
-                                ),
-                              ],
-                            ),
-                          );
+                          showModal(
+                              'Erro!', 'Preencha todos os campos', context);
                         } else if (await userController.checkUser(
                             userController.fieldTextUserEmail.text,
                             userController.fieldTextUserPassword.text)) {
                           Navigator.pushNamed(context, '/home');
                         } else {
-                          showCupertinoModalPopup<void>(
-                            context: context,
-                            builder: (BuildContext context) =>
-                                CupertinoAlertDialog(
-                              title: const Text('Erro!'),
-                              content:
-                                  const Text('Usuário ou senha inválidos!'),
-                              actions: <CupertinoDialogAction>[
-                                CupertinoDialogAction(
-                                  child: const Text('Ok'),
-                                  onPressed: () {
-                                    Navigator.pop(context);
-                                  },
-                                ),
-                              ],
-                            ),
-                          );
+                          showModal(
+                              'Erro!', 'Usuário ou senha inválidos!', context);
                         }
                       },
                     ),

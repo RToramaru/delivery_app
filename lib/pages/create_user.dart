@@ -1,4 +1,6 @@
 import 'package:delivery_app/controllers/user_controller.dart';
+import 'package:delivery_app/pages/widgets/modal_widget.dart';
+import 'package:delivery_app/pages/widgets/text_field_decoration.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_multi_formatter/flutter_multi_formatter.dart';
 
@@ -27,36 +29,21 @@ class _CreateUserState extends State<CreateUser> {
                 controller: userController.fieldTextUserName,
                 placeholder: 'Nome',
                 padding: const EdgeInsets.all(16),
-                decoration: const BoxDecoration(
-                  border: Border(
-                    bottom:
-                        BorderSide(width: 0.0, color: CupertinoColors.white),
-                  ),
-                ),
+                decoration: textFieldDecoration,
               ),
               const SizedBox(height: 20),
               CupertinoTextField(
                 controller: userController.fieldTextUserEmail,
                 placeholder: 'Email',
                 padding: const EdgeInsets.all(16),
-                decoration: const BoxDecoration(
-                  border: Border(
-                    bottom:
-                        BorderSide(width: 0.0, color: CupertinoColors.white),
-                  ),
-                ),
+                decoration: textFieldDecoration,
               ),
               const SizedBox(height: 20),
               CupertinoTextField(
                 controller: userController.fieldTextUserPassword,
                 placeholder: 'Senha',
                 padding: const EdgeInsets.all(16),
-                decoration: const BoxDecoration(
-                  border: Border(
-                    bottom:
-                        BorderSide(width: 0.0, color: CupertinoColors.white),
-                  ),
-                ),
+                decoration: textFieldDecoration,
               ),
               const SizedBox(height: 20),
               CupertinoTextField(
@@ -67,24 +54,14 @@ class _CreateUserState extends State<CreateUser> {
                 ],
                 keyboardType: TextInputType.number,
                 padding: const EdgeInsets.all(16),
-                decoration: const BoxDecoration(
-                  border: Border(
-                    bottom:
-                        BorderSide(width: 0.0, color: CupertinoColors.white),
-                  ),
-                ),
+                decoration: textFieldDecoration,
               ),
               const SizedBox(height: 20),
               CupertinoTextField(
                 controller: userController.fieldTextUserAddress,
                 placeholder: 'Endereço',
                 padding: const EdgeInsets.all(16),
-                decoration: const BoxDecoration(
-                  border: Border(
-                    bottom:
-                        BorderSide(width: 0.0, color: CupertinoColors.white),
-                  ),
-                ),
+                decoration: textFieldDecoration,
               ),
               const SizedBox(height: 20),
               CupertinoTextField(
@@ -95,12 +72,7 @@ class _CreateUserState extends State<CreateUser> {
                 ],
                 keyboardType: TextInputType.number,
                 padding: const EdgeInsets.all(16),
-                decoration: const BoxDecoration(
-                  border: Border(
-                    bottom:
-                        BorderSide(width: 0.0, color: CupertinoColors.white),
-                  ),
-                ),
+                decoration: textFieldDecoration,
               ),
               const SizedBox(height: 20),
               CupertinoButton.filled(
@@ -113,37 +85,9 @@ class _CreateUserState extends State<CreateUser> {
                       userController.fieldTextUserPhone.text,
                       userController.fieldTextUserAddress.text,
                       userController.fieldTextUserCard.text)) {
-                    showCupertinoModalPopup<void>(
-                      context: context,
-                      builder: (BuildContext context) => CupertinoAlertDialog(
-                        title: const Text('Sucesso!'),
-                        content: const Text('Conta criada com sucesso!'),
-                        actions: <CupertinoDialogAction>[
-                          CupertinoDialogAction(
-                            child: const Text('Ok'),
-                            onPressed: () {
-                              Navigator.pop(context);
-                            },
-                          ),
-                        ],
-                      ),
-                    );
+                    showModal('Sucesso!', 'Conta criada com sucesso!', context);
                   } else {
-                    showCupertinoModalPopup<void>(
-                      context: context,
-                      builder: (BuildContext context) => CupertinoAlertDialog(
-                        title: const Text('Erro!'),
-                        content: const Text('Erro ao criar conta!'),
-                        actions: <CupertinoDialogAction>[
-                          CupertinoDialogAction(
-                            child: const Text('Ok'),
-                            onPressed: () {
-                              Navigator.pop(context);
-                            },
-                          ),
-                        ],
-                      ),
-                    );
+                    showModal('Erro!', 'Erro ao criar conta!', context);
                   }
                 },
               ),
