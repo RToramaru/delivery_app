@@ -1,4 +1,5 @@
 class ProductModel{
+  String id = '';
   String name = '';
   String description = '';
   double price = 0.0;

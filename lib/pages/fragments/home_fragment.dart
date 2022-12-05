@@ -1,11 +1,11 @@
-// ignore_for_file: prefer_const_constructors
-// ignore_for_file: prefer_const_literals_to_create_immutables
-
 import 'dart:convert';
 
+import 'package:delivery_app/controllers/favorite_controller.dart';
 import 'package:delivery_app/controllers/product_controller.dart';
+import 'package:delivery_app/models/favorite_model.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class HomeFragment extends StatefulWidget {
   const HomeFragment({Key? key}) : super(key: key);
@@ -21,6 +21,7 @@ class _HomeFragmentState extends State<HomeFragment> {
   void initState() {
     super.initState();
     getAllProducts();
+    Provider.of<FavoriteController>(context, listen: false).getFavorites();
   }
 
   void getAllProducts() async {
@@ -32,6 +33,9 @@ class _HomeFragmentState extends State<HomeFragment> {
 
   @override
   Widget build(BuildContext context) {
+    var favoriteControllerList =
+        Provider.of<FavoriteController>(context).favorites;
+
     return Column(
       children: [
         Stack(
@@ -62,8 +66,19 @@ class _HomeFragmentState extends State<HomeFragment> {
                   margin: const EdgeInsets.all(10),
                   child: Card(
                     child: ListTile(
-                      leading: Image.memory(
-                        base64Decode(productController.products[index].image),
+                      leading: Container(
+                        decoration: BoxDecoration(
+                          border: Border.all(color: Colors.black),
+                        ),
+                        child: Image(
+                            image: ResizeImage(
+                          MemoryImage(
+                            base64Decode(
+                                productController.products[index].image),
+                          ),
+                          width: 150,
+                          height: 150,
+                        )),
                       ),
                       title: Text(productController.products[index].name),
                       subtitle: Column(
@@ -87,8 +102,8 @@ class _HomeFragmentState extends State<HomeFragment> {
                                       productController.products[index].stars
                                           .toInt();
                                   i++)
-                                Padding(
-                                  padding: const EdgeInsets.only(top: 10),
+                                const Padding(
+                                  padding: EdgeInsets.only(top: 10),
                                   child: Icon(
                                     CupertinoIcons.star_fill,
                                     color: CupertinoColors.systemYellow,
@@ -99,9 +114,9 @@ class _HomeFragmentState extends State<HomeFragment> {
                                       .round() >
                                   productController.products[index].stars
                                       .toInt())
-                                Padding(
+                                const Padding(
                                   padding:
-                                      const EdgeInsets.only(top: 10, left: 5),
+                                      EdgeInsets.only(top: 10, left: 5),
                                   child: Icon(
                                     CupertinoIcons.star_lefthalf_fill,
                                     color: CupertinoColors.systemYellow,
@@ -115,9 +130,9 @@ class _HomeFragmentState extends State<HomeFragment> {
                                               .products[index].stars
                                               .round();
                                   i++)
-                                Padding(
+                                const Padding(
                                   padding:
-                                      const EdgeInsets.only(top: 10, left: 5),
+                                      EdgeInsets.only(top: 10, left: 5),
                                   child: Icon(
                                     CupertinoIcons.star,
                                     color: CupertinoColors.systemYellow,
@@ -135,13 +150,34 @@ class _HomeFragmentState extends State<HomeFragment> {
                           CupertinoButton(
                             onPressed: () {},
                             padding: const EdgeInsets.all(0),
-                            child: Text('Adicionar'),
+                            child: const Text('Adicionar'),
                           ),
                         ],
                       ),
                       trailing: IconButton(
-                        icon: Icon(CupertinoIcons.heart),
-                        onPressed: () {},
+                        icon: favoriteControllerList
+                                .map((e) =>
+                                    e.id ==
+                                    productController.products[index].id)
+                                .contains(true)
+                            ? const Icon(CupertinoIcons.heart_fill, color: Colors.red)
+                            : const Icon(CupertinoIcons.heart, color: Colors.red),
+                        onPressed: () {
+                          if (favoriteControllerList
+                              .map((e) =>
+                                  e.id == productController.products[index].id)
+                              .contains(true)) {
+                            Provider.of<FavoriteController>(context,
+                                    listen: false)
+                                .removeFavorite(
+                                    favoriteControllerList[index].id);
+                          } else {
+                            Provider.of<FavoriteController>(context,
+                                    listen: false)
+                                .addFavorite(FavoriteModel(
+                                    id: productController.products[index].id));
+                          }
+                        },
                       ),
                     ),
                   ),

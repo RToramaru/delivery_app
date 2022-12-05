@@ -3,8 +3,11 @@ import 'package:delivery_app/pages/widgets/modal_widget.dart';
 import 'package:delivery_app/pages/widgets/text_field_decoration.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:wave/config.dart';
 import 'package:wave/wave.dart';
+
+import '../controllers/favorite_controller.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -79,6 +82,10 @@ class _LoginPageState extends State<LoginPage> {
                         } else if (await userController.checkUser(
                             userController.fieldTextUserEmail.text,
                             userController.fieldTextUserPassword.text)) {
+                          Provider.of<FavoriteController>(context,
+                                  listen: false)
+                              .configureCollection(
+                                  userController.fieldTextUserEmail.text);
                           Navigator.pushNamed(context, '/home');
                         } else {
                           showModal(

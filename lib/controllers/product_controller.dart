@@ -25,7 +25,16 @@ class ProductController {
     products.clear();
     var docs = await _collection.get();
     for (var doc in docs.docs) {
-      products.add(ProductModel.fromMap(doc.data()));
+      ProductModel product = ProductModel.fromMap(doc.data());
+      product.id = doc.id;
+      products.add(product);
     }
+  }
+
+  Future<ProductModel> getProductById(String id) async {
+    var doc = await _collection.doc(id).get();
+    ProductModel product = ProductModel.fromMap(doc.data() as Map<String, dynamic>);
+    product.id = doc.id;
+    return product;
   }
 }
