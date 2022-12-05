@@ -1,8 +1,11 @@
 // ignore_for_file: prefer_const_constructors
 // ignore_for_file: prefer_const_literals_to_create_immutables
 
+import 'package:delivery_app/controllers/items_car_controller.dart';
+import 'package:delivery_app/models/product_model.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class CartFragment extends StatefulWidget {
   const CartFragment({Key? key}) : super(key: key);
@@ -14,6 +17,8 @@ class CartFragment extends StatefulWidget {
 class _CartFragmentState extends State<CartFragment> {
   @override
   Widget build(BuildContext context) {
+    List<ProductModel> itemsCar =
+        Provider.of<ItemsCarController>(context).items;
     return ListView(
       children: [
         Container(
@@ -33,30 +38,44 @@ class _CartFragmentState extends State<CartFragment> {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          for (var i = 0; i < 2; i++)
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Container(
-                                  margin: const EdgeInsets.only(top: 10),
-                                  child: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
+                            for (var i = 0; i < itemsCar.length; i++)
+                              Column(
+                                children: [
+                                  Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
                                     children: [
-                                      Text('Nome do produto'),
-                                      Text('Descrição do produto'),
-                                      Text('R\$ 10,00'),
+                                      Container(
+                                        margin: const EdgeInsets.only(top: 10),
+                                        child: Column(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            Text(itemsCar[i].name),
+                                            Text(itemsCar[i].description),
+                                            Text('R\$ ${itemsCar[i].price}'),
+                                          ],
+                                        ),
+                                      ),
+                                      Align(
+                                        alignment: Alignment.topRight,
+                                        child: IconButton(
+                                            onPressed: () {
+                                              Provider.of<ItemsCarController>(
+                                                      context,
+                                                      listen: false)
+                                                  .removeItems(itemsCar[i]);
+                                            },
+                                            icon: Icon(CupertinoIcons.trash)),
+                                      ),
                                     ],
                                   ),
-                                ),
-                                Align(
-                                  alignment: Alignment.topRight,
-                                  child: IconButton(
-                                      onPressed: () {},
-                                      icon: Icon(CupertinoIcons.trash)),
-                                ),
-                              ],
-                            ),
+                                  const Divider(),
+                                ],
+                              ),
+                          SizedBox(
+                            height: 50,
+                          ),
                         ],
                       ),
                     ),
@@ -77,9 +96,7 @@ class _CartFragmentState extends State<CartFragment> {
                       title: Text("Dinheiro"),
                       value: 0,
                       groupValue: 0,
-                      onChanged: (value) {
-                        
-                      },
+                      onChanged: (value) {},
                     ),
                     Container(
                       margin: const EdgeInsets.only(left: 50),
@@ -93,9 +110,7 @@ class _CartFragmentState extends State<CartFragment> {
                       title: Text("Cartão"),
                       value: 1,
                       groupValue: 1, // igual para funcionar
-                      onChanged: (value) {
-                        
-                      },
+                      onChanged: (value) {},
                     ),
                     Container(
                       margin: const EdgeInsets.only(left: 50),
@@ -116,8 +131,8 @@ class _CartFragmentState extends State<CartFragment> {
                 subtitle: Container(
                   margin: const EdgeInsets.only(top: 10),
                   child: CupertinoTextField(
-                        placeholder: 'Endereço',
-                      ),
+                    placeholder: 'Endereço',
+                  ),
                 ),
               ),
             ),
@@ -134,7 +149,12 @@ class _CartFragmentState extends State<CartFragment> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text('Subtotal', style: TextStyle(fontSize: 15)),
-                      Text('R\$ 00,00', style: TextStyle(fontSize: 15)),
+                      itemsCar.isNotEmpty?
+                      Text(
+                          'R\$ ${itemsCar.map((e) => e.price).reduce((value, value2) => value + value2)}',
+                          style: TextStyle(fontSize: 15)):Text(
+                          'R\$ 00,00',
+                          style: TextStyle(fontSize: 15)),
                     ],
                   ),
                   Divider(),
@@ -142,6 +162,8 @@ class _CartFragmentState extends State<CartFragment> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text('Frete', style: TextStyle(fontSize: 15)),
+                      itemsCar.isNotEmpty?
+                      Text('R\$ 5,00', style: TextStyle(fontSize: 15)):
                       Text('R\$ 00,00', style: TextStyle(fontSize: 15)),
                     ],
                   ),
@@ -152,7 +174,13 @@ class _CartFragmentState extends State<CartFragment> {
                       Text('Total',
                           style: TextStyle(
                               fontSize: 15, fontWeight: FontWeight.bold)),
-                      Text('R\$ 00,00',
+                      itemsCar.isNotEmpty?
+                      Text(
+                          'R\$ ${itemsCar.map((e) => e.price).reduce((value, value2) => value + value2) + 5}',
+                          style: TextStyle(
+                              fontSize: 15, fontWeight: FontWeight.bold)):
+                              Text(
+                          'R\$ 00,00',
                           style: TextStyle(
                               fontSize: 15, fontWeight: FontWeight.bold)),
                     ],

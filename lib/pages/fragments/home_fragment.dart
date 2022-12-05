@@ -1,10 +1,12 @@
 import 'dart:convert';
 
 import 'package:delivery_app/controllers/favorite_controller.dart';
+import 'package:delivery_app/controllers/items_car_controller.dart';
 import 'package:delivery_app/controllers/product_controller.dart';
 import 'package:delivery_app/models/favorite_model.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:provider/provider.dart';
 
 class HomeFragment extends StatefulWidget {
@@ -115,8 +117,7 @@ class _HomeFragmentState extends State<HomeFragment> {
                                   productController.products[index].stars
                                       .toInt())
                                 const Padding(
-                                  padding:
-                                      EdgeInsets.only(top: 10, left: 5),
+                                  padding: EdgeInsets.only(top: 10, left: 5),
                                   child: Icon(
                                     CupertinoIcons.star_lefthalf_fill,
                                     color: CupertinoColors.systemYellow,
@@ -131,8 +132,7 @@ class _HomeFragmentState extends State<HomeFragment> {
                                               .round();
                                   i++)
                                 const Padding(
-                                  padding:
-                                      EdgeInsets.only(top: 10, left: 5),
+                                  padding: EdgeInsets.only(top: 10, left: 5),
                                   child: Icon(
                                     CupertinoIcons.star,
                                     color: CupertinoColors.systemYellow,
@@ -148,7 +148,20 @@ class _HomeFragmentState extends State<HomeFragment> {
                             ],
                           ),
                           CupertinoButton(
-                            onPressed: () {},
+                            onPressed: () {
+                              Fluttertoast.showToast(
+                                  msg: 'Adicionado ao carrinho',
+                                  toastLength: Toast.LENGTH_SHORT,
+                                  gravity: ToastGravity.BOTTOM,
+                                  timeInSecForIosWeb: 1,
+                                  backgroundColor: Colors.black,
+                                  textColor: Colors.white,
+                                  fontSize: 16.0);
+
+                              Provider.of<ItemsCarController>(context,
+                                      listen: false)
+                                  .addItems(productController.products[index]);
+                            },
                             padding: const EdgeInsets.all(0),
                             child: const Text('Adicionar'),
                           ),
@@ -160,8 +173,10 @@ class _HomeFragmentState extends State<HomeFragment> {
                                     e.id ==
                                     productController.products[index].id)
                                 .contains(true)
-                            ? const Icon(CupertinoIcons.heart_fill, color: Colors.red)
-                            : const Icon(CupertinoIcons.heart, color: Colors.red),
+                            ? const Icon(CupertinoIcons.heart_fill,
+                                color: Colors.red)
+                            : const Icon(CupertinoIcons.heart,
+                                color: Colors.red),
                         onPressed: () {
                           if (favoriteControllerList
                               .map((e) =>
