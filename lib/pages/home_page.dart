@@ -1,5 +1,5 @@
 import 'package:badges/badges.dart';
-import 'package:delivery_app/controllers/items_car_controller.dart';
+import 'package:delivery_app/controllers/items_cart_controller.dart';
 import 'package:delivery_app/models/product_model.dart';
 import 'package:delivery_app/pages/fragments/cart_fragment.dart';
 import 'package:delivery_app/pages/fragments/favorites_fragment.dart';

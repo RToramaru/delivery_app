@@ -2,7 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:delivery_app/models/user_model.dart';
 import 'package:flutter/cupertino.dart';
 
-class UserController {
+class UserController extends ChangeNotifier{
   final _collection = FirebaseFirestore.instance.collection('users');
 
   TextEditingController fieldTextUserName = TextEditingController();
@@ -11,6 +11,8 @@ class UserController {
   TextEditingController fieldTextUserPhone = TextEditingController();
   TextEditingController fieldTextUserAddress = TextEditingController();
   TextEditingController fieldTextUserCard = TextEditingController();
+
+  late UserModel user;
 
   Future<bool> createUser(String name, String email, String password,
       String phone, String address, String card) async {
@@ -31,9 +33,9 @@ class UserController {
     }
   }
 
-  Future<UserModel> getUser(String email) async {
+  Future<void> getUser(String email) async {
     var doc = await _collection.doc(email).get();
-    return UserModel.fromJson(doc.data()!);
+    user = UserModel.fromJson(doc.data()!);
   }
 
   Future<bool> checkUser(String email, String password) async {

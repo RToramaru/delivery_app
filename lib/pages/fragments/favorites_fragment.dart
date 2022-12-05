@@ -35,52 +35,65 @@ class _FavoritesFragmentState extends State<FavoritesFragment> {
   Widget build(BuildContext context) {
     var favoriteControllerList =
         Provider.of<FavoriteController>(context).favorites;
-    return ListView.builder(
-        itemCount: favoriteControllerList.length,
-        itemBuilder: (context, index) {
-          ProductModel p = productController.products.firstWhere(
-              (element) => element.id == favoriteControllerList[index].id);
-          return Container(
-            margin: const EdgeInsets.all(10),
-            child: Card(
-              child: ListTile(
-                leading: Container(
-                  decoration: BoxDecoration(
+    return Column(
+      children: [
+        const Text('Favoritos',
+            style: TextStyle(
+                fontSize: 30,
+                fontWeight: FontWeight.bold,
+                color: CupertinoColors.systemRed)),
+        Expanded(
+          child: ListView.builder(
+              itemCount: favoriteControllerList.length,
+              itemBuilder: (context, index) {
+                ProductModel p = productController.products.firstWhere(
+                    (element) =>
+                        element.id == favoriteControllerList[index].id);
+                return Container(
+                  margin: const EdgeInsets.all(10),
+                  child: Card(
+                    child: ListTile(
+                      leading: Container(
+                        decoration: BoxDecoration(
                           border: Border.all(color: Colors.black),
                         ),
-                  child: Image(
-                      image: ResizeImage(
-                    MemoryImage(
-                      base64Decode(p.image),
+                        child: Image(
+                            image: ResizeImage(
+                          MemoryImage(
+                            base64Decode(p.image),
+                          ),
+                          width: 150,
+                          height: 150,
+                        )),
+                      ),
+                      title: Text(p.name),
+                      subtitle: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.only(top: 10),
+                            child: Text(p.description),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(top: 10),
+                            child: Text('R\$ ${p.price}'),
+                          ),
+                        ],
+                      ),
+                      trailing: IconButton(
+                          icon: const Icon(CupertinoIcons.heart_fill,
+                              size: 30, color: CupertinoColors.systemRed),
+                          onPressed: () {
+                            Provider.of<FavoriteController>(context,
+                                    listen: false)
+                                .removeFavorite(p.id);
+                          }),
                     ),
-                    width: 150,
-                    height: 150,
-                  )),
-                ),
-                title: Text(p.name),
-                subtitle: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.only(top: 10),
-                      child: Text(p.description),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(top: 10),
-                      child: Text('R\$ ${p.price}'),
-                    ),
-                  ],
-                ),
-                trailing: IconButton(
-                    icon: const Icon(CupertinoIcons.heart_fill,
-                        size: 30, color: CupertinoColors.systemRed),
-                    onPressed: () {
-                      Provider.of<FavoriteController>(context, listen: false)
-                          .removeFavorite(p.id);
-                    }),
-              ),
-            ),
-          );
-        });
+                  ),
+                );
+              }),
+        ),
+      ],
+    );
   }
 }

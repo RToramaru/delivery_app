@@ -15,4 +15,9 @@ class ItemsCarController extends ChangeNotifier {
     notifyListeners();
   }
 
+  void clearItems() {
+    items.clear();
+    notifyListeners();
+  }
+
 }

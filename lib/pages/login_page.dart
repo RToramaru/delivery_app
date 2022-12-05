@@ -1,3 +1,4 @@
+import 'package:delivery_app/controllers/purchase_controller.dart';
 import 'package:delivery_app/controllers/user_controller.dart';
 import 'package:delivery_app/pages/widgets/modal_widget.dart';
 import 'package:delivery_app/pages/widgets/text_field_decoration.dart';
@@ -7,7 +8,7 @@ import 'package:provider/provider.dart';
 import 'package:wave/config.dart';
 import 'package:wave/wave.dart';
 
-import '../controllers/favorite_controller.dart';
+import 'package:delivery_app/controllers/favorite_controller.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -86,6 +87,10 @@ class _LoginPageState extends State<LoginPage> {
                                   listen: false)
                               .configureCollection(
                                   userController.fieldTextUserEmail.text);
+
+                          Provider.of<UserController>(context, listen: false)
+                              .getUser(userController.fieldTextUserEmail.text);
+
                           Navigator.pushNamed(context, '/home');
                         } else {
                           showModal(
