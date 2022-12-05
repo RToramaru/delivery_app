@@ -14,11 +14,11 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   List<Widget> screens = [
-    HomeFragment(),
-    HistoricFragment(),
-    ProfileFragment(),
-    FavoritesFragment(),
-    CartFragment()
+    const HomeFragment(),
+    const HistoricFragment(),
+    const ProfileFragment(),
+    const FavoritesFragment(),
+    const CartFragment()
   ];
 
   @override
