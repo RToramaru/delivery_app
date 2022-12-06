@@ -94,7 +94,7 @@ class _LoginPageState extends State<LoginPage> {
                           Provider.of<PurchaseController>(context,
                                   listen: false).configureCollection(userController.fieldTextUserEmail.text);
                                   
-                          Navigator.pushNamed(context, '/home');
+                          Navigator.pushReplacementNamed(context, '/home');
                         } else {
                           showModal(
                               'Erro!', 'Usuário ou senha inválidos!', context);

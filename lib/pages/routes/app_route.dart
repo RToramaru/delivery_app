@@ -18,7 +18,7 @@ class AppRoutes extends StatelessWidget {
         primaryColor: CupertinoColors.systemRed,
         brightness: Brightness.light
       ),
-      initialRoute: '/',
+      initialRoute: '/login',
       routes: {
         '/login': (context) => const LoginPage(),
         '/home': (context) => const HomePage(),
