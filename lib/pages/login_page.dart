@@ -91,6 +91,9 @@ class _LoginPageState extends State<LoginPage> {
                           Provider.of<UserController>(context, listen: false)
                               .getUser(userController.fieldTextUserEmail.text);
 
+                          Provider.of<PurchaseController>(context,
+                                  listen: false).configureCollection(userController.fieldTextUserEmail.text);
+                                  
                           Navigator.pushNamed(context, '/home');
                         } else {
                           showModal(

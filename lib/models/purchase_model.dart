@@ -6,6 +6,7 @@ class PurchaseModel{
   int payment = 0;
   String address = '';
   double price = 0;
+  String ?id;
 
   PurchaseModel({required this.items, required this.payment, required this.address, required this.price});
 

@@ -8,6 +8,7 @@ class FavoriteController extends ChangeNotifier {
 
   void configureCollection(String email) {
     _collection = _collection.doc(email).collection('favorites');
+    getFavorites();
   }
 
   Future<void> getFavorites() async {

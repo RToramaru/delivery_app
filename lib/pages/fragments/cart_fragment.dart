@@ -17,12 +17,11 @@ class CartFragment extends StatefulWidget {
 }
 
 class _CartFragmentState extends State<CartFragment> {
-  PurchaseController purchaseController = PurchaseController();
-
   @override
   Widget build(BuildContext context) {
     List<ProductModel> itemsCar =
         Provider.of<ItemsCarController>(context).items;
+    var purchaseController = Provider.of<PurchaseController>(context);
     UserModel user = Provider.of<UserController>(context).user;
     return ListView(
       children: [
@@ -253,8 +252,8 @@ class _CartFragmentState extends State<CartFragment> {
                               price: itemsCar.map((e) => e.price).reduce(
                                       (value, value2) => value + value2) +
                                   5);
-                          purchaseController.configureCollection(user.email);
-                          purchaseController.addPurchase(p.toMap());
+
+                          Provider.of<PurchaseController>(context, listen: false).addPurchase(p.toMap());
 
                           Fluttertoast.showToast(
                               msg: 'Pedido realizado com sucesso!',

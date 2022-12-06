@@ -2,7 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:delivery_app/models/purchase_model.dart';
 import 'package:flutter/cupertino.dart';
 
-class PurchaseController{
+class PurchaseController extends ChangeNotifier{
   var _collection = FirebaseFirestore.instance.collection('purchase');
   List<PurchaseModel> purchases = [];
   String payment = 'card';
@@ -14,10 +14,12 @@ class PurchaseController{
 
   void configureCollection(String email) {
     _collection = _collection.doc(email).collection('purchase');
+    getPurchases();
   }
 
   Future<void> addPurchase(Map<String, dynamic> purchase) async {
     await _collection.add(purchase);
+    getPurchases();
   }
 
   Future<void> getPurchases() async {
@@ -25,8 +27,11 @@ class PurchaseController{
     final docs = await _collection.get();
 
     for (var doc in docs.docs) {
-      purchases.add(PurchaseModel.fromMap(doc.data()));
+      PurchaseModel p = PurchaseModel.fromMap(doc.data());
+      p.id = doc.id;
+      purchases.add(p);
     }
+    notifyListeners();
   }
 
 }

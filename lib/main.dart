@@ -17,5 +17,6 @@ void main() async {
     ChangeNotifierProvider(create: (_) => FavoriteController()),
     ChangeNotifierProvider(create: (_) => ItemsCarController()),
     ChangeNotifierProvider(create: (_) => UserController()),
+    ChangeNotifierProvider(create: (_) => PurchaseController()),
   ], child: const AppRoutes()));
 }
