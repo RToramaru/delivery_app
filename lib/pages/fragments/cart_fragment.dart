@@ -203,7 +203,7 @@ class _CartFragmentState extends State<CartFragment> {
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
-                                Text('Cartão número: ${user.card}',
+                                Text('Cartão: ${user.card}',
                                     style: TextStyle(
                                       color: theme.isDark
                                           ? CupertinoColors.white

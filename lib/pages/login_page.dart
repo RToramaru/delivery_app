@@ -60,6 +60,7 @@ class _LoginPageState extends State<LoginPage> {
                     child: CupertinoTextField(
                       controller: userController.fieldTextUserEmail,
                       placeholder: 'Email',
+                      keyboardType: TextInputType.emailAddress,
                       padding: const EdgeInsets.all(16),
                       decoration: textFieldDecoration,
                     ),

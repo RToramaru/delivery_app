@@ -39,6 +39,7 @@ class _CreateUserState extends State<CreateUser> {
               CupertinoTextField(
                 controller: userController.fieldTextUserEmail,
                 placeholder: 'Email',
+                keyboardType: TextInputType.emailAddress,
                 padding: const EdgeInsets.all(16),
                 decoration: textFieldDecoration,
               ),
