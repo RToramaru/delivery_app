@@ -3,7 +3,7 @@ import 'package:delivery_app/models/purchase_model.dart';
 import 'package:flutter/cupertino.dart';
 
 class PurchaseController extends ChangeNotifier{
-  var _collection = FirebaseFirestore.instance.collection('purchase');
+  var _collection;
   List<PurchaseModel> purchases = [];
   String payment = 'card';
   bool alterPayment = false;
@@ -13,6 +13,7 @@ class PurchaseController extends ChangeNotifier{
   TextEditingController fieldTextAddress = TextEditingController();
 
   void configureCollection(String email) {
+    _collection = FirebaseFirestore.instance.collection('purchase');
     _collection = _collection.doc(email).collection('purchase');
     getPurchases();
   }

@@ -1,3 +1,6 @@
+import 'package:delivery_app/controllers/favorite_controller.dart';
+import 'package:delivery_app/controllers/purchase_controller.dart';
+import 'package:delivery_app/controllers/theme_controller.dart';
 import 'package:delivery_app/controllers/user_controller.dart';
 import 'package:delivery_app/pages/widgets/text_field_decoration.dart';
 import 'package:flutter/cupertino.dart';
@@ -17,17 +20,26 @@ class _ProfileFragmentState extends State<ProfileFragment> {
 
   @override
   Widget build(BuildContext context) {
+    var theme = Provider.of<ThemeController>(context);
     var user = Provider.of<UserController>(context).user;
     return Container(
       margin: const EdgeInsets.all(20),
       child: Column(children: [
         Row(
           children: [
-            const Icon(CupertinoIcons.person_alt_circle,
-                size: 50, color: CupertinoColors.black),
+            Icon(CupertinoIcons.person_alt_circle,
+                size: 50,
+                color: theme.isDark
+                    ? CupertinoColors.white
+                    : CupertinoColors.black),
             Text(user.name,
-                style:
-                    const TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+                style: TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                  color: theme.isDark
+                      ? CupertinoColors.white
+                      : CupertinoColors.black,
+                )),
           ],
         ),
         Expanded(
@@ -36,10 +48,21 @@ class _ProfileFragmentState extends State<ProfileFragment> {
           child: ListView(
             children: [
               Card(
+                color: theme.isDark
+                    ? CupertinoColors.black
+                    : CupertinoColors.white,
                 child: ListTile(
-                  leading: const Icon(CupertinoIcons.phone,
-                      size: 30, color: CupertinoColors.black),
-                  title: const Text('Telefone'),
+                  leading: Icon(CupertinoIcons.phone,
+                      size: 30,
+                      color: theme.isDark
+                          ? CupertinoColors.white
+                          : CupertinoColors.black),
+                  title: Text('Telefone',
+                      style: TextStyle(
+                        color: theme.isDark
+                            ? CupertinoColors.white
+                            : CupertinoColors.black,
+                      )),
                   subtitle: userController.updatePhone
                       ? Column(
                           children: [
@@ -57,7 +80,9 @@ class _ProfileFragmentState extends State<ProfileFragment> {
                               decoration: textFieldDecoration,
                             ),
                             CupertinoButton(
-                              child: const Text('Salvar'),
+                              child: Text('Salvar',
+                                  style: TextStyle(
+                                      color: CupertinoColors.systemRed)),
                               onPressed: () {
                                 userController.updatePhone = false;
                                 Provider.of<UserController>(context,
@@ -69,10 +94,18 @@ class _ProfileFragmentState extends State<ProfileFragment> {
                             )
                           ],
                         )
-                      : Text(user.phone),
+                      : Text(user.phone,
+                          style: TextStyle(
+                            color: theme.isDark
+                                ? CupertinoColors.white
+                                : CupertinoColors.black,
+                          )),
                   trailing: IconButton(
-                      icon: const Icon(CupertinoIcons.pencil,
-                          size: 30, color: CupertinoColors.black),
+                      icon: Icon(CupertinoIcons.pencil,
+                          size: 30,
+                          color: theme.isDark
+                              ? CupertinoColors.white
+                              : CupertinoColors.black),
                       onPressed: () {
                         setState(() {
                           userController.updatePhone = true;
@@ -81,10 +114,20 @@ class _ProfileFragmentState extends State<ProfileFragment> {
                 ),
               ),
               Card(
+                color: theme.isDark
+                    ? CupertinoColors.black
+                    : CupertinoColors.white,
                 child: ListTile(
-                  leading: const Icon(CupertinoIcons.location,
-                      size: 30, color: CupertinoColors.black),
-                  title: const Text('Endereço'),
+                  leading: Icon(CupertinoIcons.location,
+                      size: 30,
+                      color: theme.isDark
+                          ? CupertinoColors.white
+                          : CupertinoColors.black),
+                  title: Text('Endereço',
+                      style: TextStyle(
+                          color: theme.isDark
+                              ? CupertinoColors.white
+                              : CupertinoColors.black)),
                   subtitle: userController.updateAddress
                       ? Column(
                           children: [
@@ -98,7 +141,9 @@ class _ProfileFragmentState extends State<ProfileFragment> {
                               decoration: textFieldDecoration,
                             ),
                             CupertinoButton(
-                              child: const Text('Salvar'),
+                              child: Text('Salvar',
+                                  style: TextStyle(
+                                      color: CupertinoColors.systemRed)),
                               onPressed: () {
                                 userController.updateAddress = false;
                                 Provider.of<UserController>(context,
@@ -110,23 +155,41 @@ class _ProfileFragmentState extends State<ProfileFragment> {
                             )
                           ],
                         )
-                      : Text(user.address),
+                      : Text(user.address,
+                          style: TextStyle(
+                            color: theme.isDark
+                                ? CupertinoColors.white
+                                : CupertinoColors.black,
+                          )),
                   trailing: IconButton(
-                      icon: const Icon(CupertinoIcons.pencil,
-                          size: 30, color: CupertinoColors.black),
+                      icon: Icon(CupertinoIcons.pencil,
+                          size: 30,
+                          color: theme.isDark
+                              ? CupertinoColors.white
+                              : CupertinoColors.black),
                       onPressed: () {
                         setState(() {
                           userController.updateAddress = true;
                         });
-                      
                       }),
                 ),
               ),
               Card(
+                color: theme.isDark
+                    ? CupertinoColors.black
+                    : CupertinoColors.white,
                 child: ListTile(
-                  leading: const Icon(CupertinoIcons.creditcard,
-                      size: 30, color: CupertinoColors.black),
-                  title: const Text('Cartão de crédito'),
+                  leading: Icon(CupertinoIcons.creditcard,
+                      size: 30,
+                      color: theme.isDark
+                          ? CupertinoColors.white
+                          : CupertinoColors.black),
+                  title: Text('Cartão de crédito',
+                      style: TextStyle(
+                        color: theme.isDark
+                            ? CupertinoColors.white
+                            : CupertinoColors.black,
+                      )),
                   subtitle: userController.updateCard
                       ? Column(
                           children: [
@@ -144,7 +207,9 @@ class _ProfileFragmentState extends State<ProfileFragment> {
                               decoration: textFieldDecoration,
                             ),
                             CupertinoButton(
-                              child: const Text('Salvar'),
+                              child: Text('Salvar',
+                                  style: TextStyle(
+                                      color: CupertinoColors.systemRed)),
                               onPressed: () {
                                 userController.updateCard = false;
                                 Provider.of<UserController>(context,
@@ -156,10 +221,18 @@ class _ProfileFragmentState extends State<ProfileFragment> {
                             )
                           ],
                         )
-                      : Text(user.card),
+                      : Text(user.card,
+                          style: TextStyle(
+                            color: theme.isDark
+                                ? CupertinoColors.white
+                                : CupertinoColors.black,
+                          )),
                   trailing: IconButton(
-                      icon: const Icon(CupertinoIcons.pencil,
-                          size: 30, color: CupertinoColors.black),
+                      icon: Icon(CupertinoIcons.pencil,
+                          size: 30,
+                          color: theme.isDark
+                              ? CupertinoColors.white
+                              : CupertinoColors.black),
                       onPressed: () {
                         setState(() {
                           userController.updateCard = true;
@@ -168,10 +241,21 @@ class _ProfileFragmentState extends State<ProfileFragment> {
                 ),
               ),
               Card(
+                color: theme.isDark
+                    ? CupertinoColors.black
+                    : CupertinoColors.white,
                 child: ListTile(
-                  leading: const Icon(CupertinoIcons.lock,
-                      size: 30, color: CupertinoColors.black),
-                  title: const Text('Senha'),
+                  leading: Icon(CupertinoIcons.lock,
+                      size: 30,
+                      color: theme.isDark
+                          ? CupertinoColors.white
+                          : CupertinoColors.black),
+                  title: Text('Senha',
+                      style: TextStyle(
+                        color: theme.isDark
+                            ? CupertinoColors.white
+                            : CupertinoColors.black,
+                      )),
                   subtitle: userController.updatePassword
                       ? Column(
                           children: [
@@ -185,7 +269,9 @@ class _ProfileFragmentState extends State<ProfileFragment> {
                               decoration: textFieldDecoration,
                             ),
                             CupertinoButton(
-                              child: const Text('Salvar'),
+                              child: Text('Salvar',
+                                  style: TextStyle(
+                                      color: CupertinoColors.systemRed)),
                               onPressed: () {
                                 userController.updatePassword = false;
                                 Provider.of<UserController>(context,
@@ -197,10 +283,18 @@ class _ProfileFragmentState extends State<ProfileFragment> {
                             )
                           ],
                         )
-                      : Text(user.password),
+                      : Text(user.password,
+                          style: TextStyle(
+                            color: theme.isDark
+                                ? CupertinoColors.white
+                                : CupertinoColors.black,
+                          )),
                   trailing: IconButton(
-                      icon: const Icon(CupertinoIcons.pencil,
-                          size: 30, color: CupertinoColors.black),
+                      icon: Icon(CupertinoIcons.pencil,
+                          size: 30,
+                          color: theme.isDark
+                              ? CupertinoColors.white
+                              : CupertinoColors.black),
                       onPressed: () {
                         setState(() {
                           userController.updatePassword = true;
@@ -209,29 +303,66 @@ class _ProfileFragmentState extends State<ProfileFragment> {
                 ),
               ),
               GestureDetector(
-                onTap: () {},
-                child: const Card(
+                onTap: () {
+                  Navigator.of(context, rootNavigator: true)
+                      .pushReplacementNamed('/config');
+                },
+                child: Card(
+                  color: theme.isDark
+                      ? CupertinoColors.black
+                      : CupertinoColors.white,
                   child: ListTile(
                     leading: Icon(CupertinoIcons.settings,
-                        size: 30, color: CupertinoColors.black),
-                    title: Text('Configurações'),
-                    subtitle: Text('Configurações do aplicativo'),
+                        size: 30,
+                        color: theme.isDark
+                            ? CupertinoColors.white
+                            : CupertinoColors.black),
+                    title: Text('Configurações',
+                        style: TextStyle(
+                          color: theme.isDark
+                              ? CupertinoColors.white
+                              : CupertinoColors.black,
+                        )),
+                    subtitle: Text('Configurações do aplicativo',
+                        style: TextStyle(
+                          color: theme.isDark
+                              ? CupertinoColors.white
+                              : CupertinoColors.black,
+                        )),
                   ),
                 ),
               ),
               GestureDetector(
-                onTap: () {},
-                child: const Card(
+                onTap: () {
+                  Navigator.of(context, rootNavigator: true)
+                      .pushReplacementNamed('/about');
+                },
+                child: Card(
+                  color: theme.isDark
+                      ? CupertinoColors.black
+                      : CupertinoColors.white,
                   child: ListTile(
                     leading: Icon(CupertinoIcons.info,
-                        size: 30, color: CupertinoColors.black),
-                    title: Text('Sobre'),
+                        size: 30,
+                        color: theme.isDark
+                            ? CupertinoColors.white
+                            : CupertinoColors.black),
+                    title: Text('Sobre',
+                        style: TextStyle(
+                          color: theme.isDark
+                              ? CupertinoColors.white
+                              : CupertinoColors.black,
+                        )),
                   ),
                 ),
               ),
-              CupertinoButton(child: const Text('Sair'), onPressed: () {
-                Navigator.of(context, rootNavigator: true).pushReplacementNamed('/login');
-              }),
+              CupertinoButton(
+                  child: const Text('Sair',
+                      style: TextStyle(color: CupertinoColors.systemRed)),
+                  onPressed: () {
+                    Navigator.of(context, rootNavigator: true)
+                        .pushReplacementNamed('/login');
+                  }),
             ],
           ),
         ))

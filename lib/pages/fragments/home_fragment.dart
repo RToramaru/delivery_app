@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:delivery_app/controllers/favorite_controller.dart';
 import 'package:delivery_app/controllers/items_cart_controller.dart';
 import 'package:delivery_app/controllers/product_controller.dart';
+import 'package:delivery_app/controllers/theme_controller.dart';
 import 'package:delivery_app/models/favorite_model.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -37,7 +38,7 @@ class _HomeFragmentState extends State<HomeFragment> {
   Widget build(BuildContext context) {
     var favoriteControllerList =
         Provider.of<FavoriteController>(context).favorites;
-
+  var theme = Provider.of<ThemeController>(context);
     return Column(
       children: [
         Stack(
@@ -45,12 +46,13 @@ class _HomeFragmentState extends State<HomeFragment> {
             Image.asset('assets/images/background.png',
                 fit: BoxFit.cover, width: double.infinity, height: 200),
             Container(
+              color: theme.isDark ? CupertinoColors.black : CupertinoColors.white,
               margin: const EdgeInsets.all(10),
               child: CupertinoSearchTextField(
                 placeholder: 'Pesquisar',
                 padding: const EdgeInsets.all(10),
                 decoration: BoxDecoration(
-                  color: CupertinoColors.white,
+                  color: theme.isDark ? CupertinoColors.black : CupertinoColors.white,
                   borderRadius: BorderRadius.circular(10),
                 ),
               ),
@@ -58,6 +60,7 @@ class _HomeFragmentState extends State<HomeFragment> {
           ],
         ),
         Container(
+          color: theme.isDark ? CupertinoColors.black : CupertinoColors.white,
           height: 50,
         ),
         Expanded(
@@ -65,12 +68,14 @@ class _HomeFragmentState extends State<HomeFragment> {
               itemCount: productController.products.length,
               itemBuilder: (BuildContext context, int index) {
                 return Container(
+                  color: theme.isDark ? CupertinoColors.black : CupertinoColors.white,
                   margin: const EdgeInsets.all(10),
                   child: Card(
+                    color: theme.isDark ? CupertinoColors.black : CupertinoColors.white,
                     child: ListTile(
                       leading: Container(
                         decoration: BoxDecoration(
-                          border: Border.all(color: Colors.black),
+                          border: Border.all(color: theme.isDark ? CupertinoColors.black : CupertinoColors.white,),
                         ),
                         child: Image(
                             image: ResizeImage(
@@ -82,19 +87,23 @@ class _HomeFragmentState extends State<HomeFragment> {
                           height: 150,
                         )),
                       ),
-                      title: Text(productController.products[index].name),
+                      title: Text(productController.products[index].name,
+                          style: TextStyle(
+                              color: theme.isDark ? CupertinoColors.white : CupertinoColors.black,)),
                       subtitle: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Padding(
                             padding: const EdgeInsets.only(top: 10),
                             child: Text(
-                                productController.products[index].description),
+                                productController.products[index].description, style: TextStyle(
+                                color: theme.isDark ? CupertinoColors.white : CupertinoColors.black,
+                                )),
                           ),
                           Padding(
                             padding: const EdgeInsets.only(top: 10),
                             child: Text(
-                                'R\$ ${productController.products[index].price}'),
+                                'R\$ ${productController.products[index].price}', style: TextStyle(color: theme.isDark ? CupertinoColors.white : CupertinoColors.black,)),
                           ),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.start,
@@ -143,7 +152,8 @@ class _HomeFragmentState extends State<HomeFragment> {
                                 padding:
                                     const EdgeInsets.only(top: 10, left: 10),
                                 child: Text(
-                                    '${productController.products[index].stars}'),
+                                    '${productController.products[index].stars}', style:TextStyle(color: theme.isDark ? CupertinoColors.white : CupertinoColors.black,)
+),
                               ),
                             ],
                           ),
@@ -154,8 +164,8 @@ class _HomeFragmentState extends State<HomeFragment> {
                                   toastLength: Toast.LENGTH_SHORT,
                                   gravity: ToastGravity.BOTTOM,
                                   timeInSecForIosWeb: 1,
-                                  backgroundColor: Colors.black,
-                                  textColor: Colors.white,
+                                  backgroundColor: theme.isDark ? CupertinoColors.white : CupertinoColors.black,
+                                  textColor: theme.isDark ? CupertinoColors.black : CupertinoColors.white,
                                   fontSize: 16.0);
 
                               Provider.of<ItemsCarController>(context,
@@ -163,7 +173,8 @@ class _HomeFragmentState extends State<HomeFragment> {
                                   .addItems(productController.products[index]);
                             },
                             padding: const EdgeInsets.all(0),
-                            child: const Text('Adicionar'),
+                            child: Text('Adicionar', style:TextStyle(color: CupertinoColors.systemRed,)
+),
                           ),
                         ],
                       ),

@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:delivery_app/controllers/favorite_controller.dart';
 import 'package:delivery_app/controllers/product_controller.dart';
+import 'package:delivery_app/controllers/theme_controller.dart';
 import 'package:delivery_app/models/product_model.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -35,6 +36,7 @@ class _FavoritesFragmentState extends State<FavoritesFragment> {
   Widget build(BuildContext context) {
     var favoriteControllerList =
         Provider.of<FavoriteController>(context).favorites;
+    var theme = Provider.of<ThemeController>(context);
     return Column(
       children: [
         const Text('Favoritos',
@@ -50,8 +52,10 @@ class _FavoritesFragmentState extends State<FavoritesFragment> {
                     (element) =>
                         element.id == favoriteControllerList[index].id);
                 return Container(
+                  color: theme.isDark ? CupertinoColors.black : CupertinoColors.white,
                   margin: const EdgeInsets.all(10),
                   child: Card(
+                    color: theme.isDark ? CupertinoColors.black : CupertinoColors.white,
                     child: ListTile(
                       leading: Container(
                         decoration: BoxDecoration(
@@ -66,17 +70,20 @@ class _FavoritesFragmentState extends State<FavoritesFragment> {
                           height: 150,
                         )),
                       ),
-                      title: Text(p.name),
+                      title: Text(p.name, style:TextStyle(color: theme.isDark ? CupertinoColors.white : CupertinoColors.black,)
+),
                       subtitle: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Padding(
                             padding: const EdgeInsets.only(top: 10),
-                            child: Text(p.description),
+                            child: Text(p.description, style:TextStyle(color: theme.isDark ? CupertinoColors.white : CupertinoColors.black,)
+),
                           ),
                           Padding(
                             padding: const EdgeInsets.only(top: 10),
-                            child: Text('R\$ ${p.price}'),
+                            child: Text('R\$ ${p.price}', style:TextStyle(color: theme.isDark ? CupertinoColors.white : CupertinoColors.black,)
+),
                           ),
                         ],
                       ),

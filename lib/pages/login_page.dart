@@ -1,4 +1,5 @@
 import 'package:delivery_app/controllers/purchase_controller.dart';
+import 'package:delivery_app/controllers/theme_controller.dart';
 import 'package:delivery_app/controllers/user_controller.dart';
 import 'package:delivery_app/pages/widgets/modal_widget.dart';
 import 'package:delivery_app/pages/widgets/text_field_decoration.dart';
@@ -22,6 +23,7 @@ class _LoginPageState extends State<LoginPage> {
 
   @override
   Widget build(BuildContext context) {
+    var theme = Provider.of<ThemeController>(context);
     return CupertinoPageScaffold(
       child: SafeArea(
         child: Stack(
@@ -32,7 +34,7 @@ class _LoginPageState extends State<LoginPage> {
                 durations: [10000],
                 heightPercentages: [0.2],
               ),
-              backgroundColor: CupertinoColors.white,
+              backgroundColor: theme.isDark ? CupertinoColors.black : CupertinoColors.white,
               size: const Size(double.infinity, double.infinity),
               waveAmplitude: 20,
             ),
@@ -47,11 +49,13 @@ class _LoginPageState extends State<LoginPage> {
                   textAlign: TextAlign.center),
             ),
             Card(
+              color: theme.isDark ? CupertinoColors.black : CupertinoColors.white,
               margin: const EdgeInsets.only(
                   top: 210, left: 50, right: 50, bottom: 50),
               child: Column(
                 children: [
                   Container(
+                    color: theme.isDark ? CupertinoColors.black : CupertinoColors.white,
                     margin: const EdgeInsets.only(top: 20, left: 20, right: 20),
                     child: CupertinoTextField(
                       controller: userController.fieldTextUserEmail,
@@ -61,6 +65,7 @@ class _LoginPageState extends State<LoginPage> {
                     ),
                   ),
                   Container(
+                    color: theme.isDark ? CupertinoColors.black : CupertinoColors.white,
                     margin: const EdgeInsets.only(top: 20, left: 20, right: 20),
                     child: CupertinoTextField(
                       controller: userController.fieldTextUserPassword,
@@ -72,9 +77,10 @@ class _LoginPageState extends State<LoginPage> {
                     ),
                   ),
                   Container(
+                    color: theme.isDark ? CupertinoColors.black : CupertinoColors.white,
                     margin: const EdgeInsets.only(top: 20, left: 20, right: 20),
                     child: CupertinoButton.filled(
-                      child: const Text('Entrar'),
+                      child: Text('Entrar', style:TextStyle(color:  CupertinoColors.white)),
                       onPressed: () async {
                         if (userController.fieldTextUserEmail.text.isEmpty ||
                             userController.fieldTextUserPassword.text.isEmpty) {
@@ -103,9 +109,10 @@ class _LoginPageState extends State<LoginPage> {
                     ),
                   ),
                   Container(
+                    color: theme.isDark ? CupertinoColors.black : CupertinoColors.white,
                     margin: const EdgeInsets.only(top: 20, left: 20, right: 20),
                     child: CupertinoButton(
-                      child: const Text('Criar conta'),
+                      child: Text('Criar conta', style:TextStyle(color: theme.isDark ? CupertinoColors.white : CupertinoColors.black,)),
                       onPressed: () {
                         Navigator.pushNamed(context, '/create_user');
                       },

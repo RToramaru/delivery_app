@@ -1,6 +1,7 @@
 import 'package:delivery_app/controllers/favorite_controller.dart';
 import 'package:delivery_app/controllers/items_cart_controller.dart';
 import 'package:delivery_app/controllers/purchase_controller.dart';
+import 'package:delivery_app/controllers/theme_controller.dart';
 import 'package:delivery_app/controllers/user_controller.dart';
 import 'package:delivery_app/firebase_options.dart';
 import 'package:delivery_app/pages/routes/app_route.dart';
@@ -18,5 +19,6 @@ void main() async {
     ChangeNotifierProvider(create: (_) => ItemsCarController()),
     ChangeNotifierProvider(create: (_) => UserController()),
     ChangeNotifierProvider(create: (_) => PurchaseController()),
+    ChangeNotifierProvider(create: (_) => ThemeController()),
   ], child: const AppRoutes()));
 }

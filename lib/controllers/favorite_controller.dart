@@ -3,13 +3,15 @@ import 'package:delivery_app/models/favorite_model.dart';
 import 'package:flutter/cupertino.dart';
 
 class FavoriteController extends ChangeNotifier {
-  var _collection = FirebaseFirestore.instance.collection('favorites');
+  var _collection;
   List<FavoriteModel> favorites = [];
 
   void configureCollection(String email) {
+    _collection = FirebaseFirestore.instance.collection('favorites');
     _collection = _collection.doc(email).collection('favorites');
     getFavorites();
   }
+
 
   Future<void> getFavorites() async {
     favorites.clear();
