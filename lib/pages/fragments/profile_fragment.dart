@@ -359,7 +359,7 @@ class _ProfileFragmentState extends State<ProfileFragment> {
                       style: TextStyle(color: CupertinoColors.systemRed)),
                   onPressed: () {
                     Navigator.of(context, rootNavigator: true)
-                        .pushNamed('/login');
+                        .pushReplacementNamed('/login');
                   }),
             ],
           ),
