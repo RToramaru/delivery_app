@@ -388,7 +388,7 @@ class _CartFragmentState extends State<CartFragment> {
                         margin: const EdgeInsets.only(top: 10),
                         width: double.infinity,
                         child: CupertinoButton.filled(
-                            child: Text('Finalizar pedido',
+                            child: const Text('Finalizar pedido',
                                 style: TextStyle(color: CupertinoColors.white)),
                             onPressed: () {
                               PurchaseModel p = PurchaseModel(
@@ -412,8 +412,6 @@ class _CartFragmentState extends State<CartFragment> {
                                   toastLength: Toast.LENGTH_SHORT,
                                   gravity: ToastGravity.BOTTOM,
                                   timeInSecForIosWeb: 1,
-                                  backgroundColor: Colors.green,
-                                  textColor: Colors.white,
                                   fontSize: 16.0);
                               Provider.of<ItemsCarController>(context,
                                       listen: false)

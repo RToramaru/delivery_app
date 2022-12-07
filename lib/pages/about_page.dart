@@ -25,7 +25,7 @@ class _AboutPageState extends State<AboutPage> {
             margin: const EdgeInsets.all(50),
             child: Column(
               children:  [
-                Text(
+                const Text(
                   'Sobre',
                   style: TextStyle(
                     color: CupertinoColors.systemRed,
@@ -34,7 +34,7 @@ class _AboutPageState extends State<AboutPage> {
                   ),
                   textAlign: TextAlign.center,
                 ),
-                SizedBox(height: 20),
+                const SizedBox(height: 20),
                 Text(
                   'Delivery App é um aplicativo de delivery de comida que ao acessar a conta é possível favoritar os produtos, fazer pedido, alterar dados de contato, verificar historico de pedidos e muito mais.\n\nO aplicativo foi desenvolvido por RToramaru.',
                   style: TextStyle(

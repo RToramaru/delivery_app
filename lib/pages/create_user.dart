@@ -80,7 +80,7 @@ class _CreateUserState extends State<CreateUser> {
               ),
               const SizedBox(height: 20),
               CupertinoButton.filled(
-                child: Text('Criar conta', style:TextStyle(color:  CupertinoColors.white)),
+                child: const Text('Criar conta', style:TextStyle(color:  CupertinoColors.white)),
                 onPressed: () async {
                   if (await userController.createUser(
                       userController.fieldTextUserName.text,

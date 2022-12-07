@@ -1,5 +1,3 @@
-import 'package:delivery_app/controllers/favorite_controller.dart';
-import 'package:delivery_app/controllers/purchase_controller.dart';
 import 'package:delivery_app/controllers/theme_controller.dart';
 import 'package:delivery_app/controllers/user_controller.dart';
 import 'package:delivery_app/pages/widgets/text_field_decoration.dart';
@@ -80,7 +78,7 @@ class _ProfileFragmentState extends State<ProfileFragment> {
                               decoration: textFieldDecoration,
                             ),
                             CupertinoButton(
-                              child: Text('Salvar',
+                              child: const Text('Salvar',
                                   style: TextStyle(
                                       color: CupertinoColors.systemRed)),
                               onPressed: () {
@@ -141,7 +139,7 @@ class _ProfileFragmentState extends State<ProfileFragment> {
                               decoration: textFieldDecoration,
                             ),
                             CupertinoButton(
-                              child: Text('Salvar',
+                              child: const Text('Salvar',
                                   style: TextStyle(
                                       color: CupertinoColors.systemRed)),
                               onPressed: () {
@@ -207,7 +205,7 @@ class _ProfileFragmentState extends State<ProfileFragment> {
                               decoration: textFieldDecoration,
                             ),
                             CupertinoButton(
-                              child: Text('Salvar',
+                              child: const Text('Salvar',
                                   style: TextStyle(
                                       color: CupertinoColors.systemRed)),
                               onPressed: () {
@@ -269,7 +267,7 @@ class _ProfileFragmentState extends State<ProfileFragment> {
                               decoration: textFieldDecoration,
                             ),
                             CupertinoButton(
-                              child: Text('Salvar',
+                              child: const Text('Salvar',
                                   style: TextStyle(
                                       color: CupertinoColors.systemRed)),
                               onPressed: () {
@@ -305,7 +303,7 @@ class _ProfileFragmentState extends State<ProfileFragment> {
               GestureDetector(
                 onTap: () {
                   Navigator.of(context, rootNavigator: true)
-                      .pushReplacementNamed('/config');
+                      .pushNamed('/config');
                 },
                 child: Card(
                   color: theme.isDark
@@ -335,7 +333,7 @@ class _ProfileFragmentState extends State<ProfileFragment> {
               GestureDetector(
                 onTap: () {
                   Navigator.of(context, rootNavigator: true)
-                      .pushReplacementNamed('/about');
+                      .pushNamed('/about');
                 },
                 child: Card(
                   color: theme.isDark
@@ -361,7 +359,7 @@ class _ProfileFragmentState extends State<ProfileFragment> {
                       style: TextStyle(color: CupertinoColors.systemRed)),
                   onPressed: () {
                     Navigator.of(context, rootNavigator: true)
-                        .pushReplacementNamed('/login');
+                        .pushNamed('/login');
                   }),
             ],
           ),

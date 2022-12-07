@@ -164,8 +164,6 @@ class _HomeFragmentState extends State<HomeFragment> {
                                   toastLength: Toast.LENGTH_SHORT,
                                   gravity: ToastGravity.BOTTOM,
                                   timeInSecForIosWeb: 1,
-                                  backgroundColor: theme.isDark ? CupertinoColors.white : CupertinoColors.black,
-                                  textColor: theme.isDark ? CupertinoColors.black : CupertinoColors.white,
                                   fontSize: 16.0);
 
                               Provider.of<ItemsCarController>(context,
@@ -173,7 +171,7 @@ class _HomeFragmentState extends State<HomeFragment> {
                                   .addItems(productController.products[index]);
                             },
                             padding: const EdgeInsets.all(0),
-                            child: Text('Adicionar', style:TextStyle(color: CupertinoColors.systemRed,)
+                            child: const Text('Adicionar', style:TextStyle(color: CupertinoColors.systemRed,)
 ),
                           ),
                         ],

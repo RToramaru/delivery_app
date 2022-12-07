@@ -80,7 +80,7 @@ class _LoginPageState extends State<LoginPage> {
                     color: theme.isDark ? CupertinoColors.black : CupertinoColors.white,
                     margin: const EdgeInsets.only(top: 20, left: 20, right: 20),
                     child: CupertinoButton.filled(
-                      child: Text('Entrar', style:TextStyle(color:  CupertinoColors.white)),
+                      child: const Text('Entrar', style:TextStyle(color:  CupertinoColors.white)),
                       onPressed: () async {
                         if (userController.fieldTextUserEmail.text.isEmpty ||
                             userController.fieldTextUserPassword.text.isEmpty) {
@@ -100,7 +100,7 @@ class _LoginPageState extends State<LoginPage> {
                           Provider.of<PurchaseController>(context,
                                   listen: false).configureCollection(userController.fieldTextUserEmail.text);
                                   
-                          Navigator.pushReplacementNamed(context, '/home');
+                          Navigator.pushNamed(context, '/home');
                         } else {
                           showModal(
                               'Erro!', 'Usuário ou senha inválidos!', context);

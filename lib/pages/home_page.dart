@@ -29,31 +29,34 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     List<ProductModel> itemsCar =
         Provider.of<ItemsCarController>(context).items;
-    return CupertinoTabScaffold(
-        tabBar: CupertinoTabBar(items: [
-          const BottomNavigationBarItem(
-              icon: Icon(CupertinoIcons.home), label: 'Principal'),
-          const BottomNavigationBarItem(
-              icon: Icon(CupertinoIcons.text_badge_checkmark),
-              label: 'Histórico'),
-          const BottomNavigationBarItem(
-              icon: Icon(CupertinoIcons.person_circle), label: 'Perfil'),
-          const BottomNavigationBarItem(
-              icon: Icon(CupertinoIcons.heart), label: 'Favoritos'),
-          BottomNavigationBarItem(
-              icon: Badge(
-                 badgeContent: Text(itemsCar.length.toString()),
-                 badgeColor: CupertinoColors.white,
-                child: const Icon(CupertinoIcons.bag)), label: 'Carrinho'),
-        ]),
-        tabBuilder: (context, index) {
-          return CupertinoTabView(
-            builder: (context) {
-              return CupertinoPageScaffold(
-                child: screens[index],
-              );
-            },
-          );
-        });
+    return CupertinoPageScaffold(
+      child: CupertinoTabScaffold(
+        
+          tabBar: CupertinoTabBar(items: [
+            const BottomNavigationBarItem(
+                icon: Icon(CupertinoIcons.home), label: 'Principal'),
+            const BottomNavigationBarItem(
+                icon: Icon(CupertinoIcons.text_badge_checkmark),
+                label: 'Histórico'),
+            const BottomNavigationBarItem(
+                icon: Icon(CupertinoIcons.person_circle), label: 'Perfil'),
+            const BottomNavigationBarItem(
+                icon: Icon(CupertinoIcons.heart), label: 'Favoritos'),
+            BottomNavigationBarItem(
+                icon: Badge(
+                   badgeContent: Text(itemsCar.length.toString()),
+                   badgeColor: CupertinoColors.white,
+                  child: const Icon(CupertinoIcons.bag)), label: 'Carrinho'),
+          ]),
+          tabBuilder: (context, index) {
+            return CupertinoTabView(
+              builder: (context) {
+                return CupertinoPageScaffold(
+                  child: screens[index],
+                );
+              },
+            );
+          }),
+    );
   }
 }
