@@ -123,6 +123,10 @@ Após feita todas as etapas o aplicativo se encontra pronto para execução. Par
 flutter run
 ```
 
+``@author Rafael Almeida``
+
+
+
 ### Demonstração
 
 ![](/screens/1.png)
@@ -131,5 +135,3 @@ flutter run
 ![](/screens/4.png)
 ![](/screens/5.png)
 ![](/screens/6.png)
-
-``@author Rafael Almeida``
