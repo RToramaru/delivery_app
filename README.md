@@ -41,7 +41,12 @@ https://user-images.githubusercontent.com/42619833/206304840-b2ce700c-e961-474d-
 
 ## Demonstração
 
-
+![](/screens/1.png)
+![](/screens/2.png)
+![](/screens/3.png)
+![](/screens/4.png)
+![](/screens/5.png)
+![](/screens/6.png)
 
   
 
@@ -124,14 +129,3 @@ flutter run
 ```
 
 ``@author Rafael Almeida``
-
-
-
-### Demonstração
-
-![](/screens/1.png)
-![](/screens/2.png)
-![](/screens/3.png)
-![](/screens/4.png)
-![](/screens/5.png)
-![](/screens/6.png)
